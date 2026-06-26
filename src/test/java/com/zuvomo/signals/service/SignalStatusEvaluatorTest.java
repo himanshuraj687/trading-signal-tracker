@@ -70,6 +70,16 @@ class SignalStatusEvaluatorTest {
     }
 
     @Test
+    void expiredSignalDoesNotBecomeTargetHitFromLatePriceMovement() {
+        TradingSignal signal = signal(Direction.BUY);
+        signal.setExpiryTime(Instant.parse("2026-06-26T11:59:59Z"));
+
+        evaluator.evaluate(signal, new BigDecimal("111"));
+
+        assertThat(signal.getStatus()).isEqualTo(SignalStatus.EXPIRED);
+    }
+
+    @Test
     void finalStatusDoesNotChange() {
         TradingSignal signal = signal(Direction.BUY);
         signal.setStatus(SignalStatus.TARGET_HIT);

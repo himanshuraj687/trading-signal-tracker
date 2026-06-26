@@ -42,6 +42,10 @@ public class SignalStatusEvaluator {
     }
 
     private SignalStatus nextStatus(TradingSignal signal, BigDecimal currentPrice) {
+        if (Instant.now(clock).isAfter(signal.getExpiryTime())) {
+            return SignalStatus.EXPIRED;
+        }
+
         if (signal.getDirection() == Direction.BUY) {
             if (currentPrice.compareTo(signal.getTargetPrice()) >= 0) {
                 return SignalStatus.TARGET_HIT;
@@ -56,10 +60,6 @@ public class SignalStatusEvaluator {
             if (currentPrice.compareTo(signal.getStopLoss()) >= 0) {
                 return SignalStatus.STOPLOSS_HIT;
             }
-        }
-
-        if (Instant.now(clock).isAfter(signal.getExpiryTime())) {
-            return SignalStatus.EXPIRED;
         }
         return SignalStatus.OPEN;
     }

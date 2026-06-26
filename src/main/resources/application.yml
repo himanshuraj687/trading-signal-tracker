@@ -19,6 +19,10 @@ spring:
 binance:
   base-url: ${BINANCE_BASE_URL:https://api.binance.com}
 
+signals:
+  evaluation:
+    fixed-delay-ms: ${SIGNAL_EVALUATION_FIXED_DELAY_MS:60000}
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

@@ -50,6 +50,7 @@ DB_URL=jdbc:postgresql://localhost:5432/trading_signals
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
 BINANCE_BASE_URL=https://api.binance.com
+SIGNAL_EVALUATION_FIXED_DELAY_MS=60000
 ```
 
 ## API
@@ -123,6 +124,8 @@ The application uses a layered structure:
 
 The controller delegates to `TradingSignalService`. On reads, open signals are evaluated against the current Binance price and saved by the active transaction if their state changes. Final states are never re-evaluated.
 
+`SignalEvaluationScheduler` also evaluates `OPEN` signals automatically every 60 seconds by default. Override the interval with `SIGNAL_EVALUATION_FIXED_DELAY_MS`.
+
 ## Tests
 
 Run:
@@ -140,3 +143,4 @@ Covered:
 - Expiry final state
 - Final-state immutability
 - BUY/SELL ROI calculations
+- Service-level evaluation with mocked Binance price client

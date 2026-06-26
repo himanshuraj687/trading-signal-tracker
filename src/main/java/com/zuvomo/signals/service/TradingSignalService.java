@@ -55,6 +55,12 @@ public class TradingSignalService {
     }
 
     @Transactional
+    public void evaluateOpenSignals() {
+        repository.findByStatus(SignalStatus.OPEN)
+                .forEach(this::evaluateIfOpen);
+    }
+
+    @Transactional
     public TradingSignal findByIdAndEvaluate(Long id) {
         return evaluateIfOpen(findById(id));
     }
