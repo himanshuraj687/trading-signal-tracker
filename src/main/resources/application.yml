@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: trading-signal-tracker
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/trading_signals}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+binance:
+  base-url: ${BINANCE_BASE_URL:https://api.binance.com}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  error:
+    include-message: always
