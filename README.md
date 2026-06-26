@@ -276,17 +276,8 @@ Covered:
 - SELL ROI calculation
 - Service-level evaluation with mocked Binance price client
 
-## Loom Video Guide
-
-Record a video under 5 minutes covering:
-
-1. Project structure: controller, dto, entity, repository, service, exception, config.
-2. Signal creation flow from Swagger to database.
-3. Validation rules for BUY, SELL, and time fields.
-4. Status evaluation flow for target hit, stop-loss hit, and expiry.
-5. Binance integration through `BinancePriceClient`.
-6. Tests and how to run `mvn test`.
-
+##  Video 
+https://www.loom.com/share/bb966142081443dbb57017e88f514093
 ## Submission Checklist
 
 - GitHub repository is available.
